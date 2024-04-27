@@ -3,6 +3,8 @@ from flask_session import Session
 from pymongo import MongoClient
 import requests
 
+
+
 app = Flask(__name__)
 
 client = MongoClient('mongodb+srv://shriharimahabal22:1234@pet.youpnug.mongodb.net/?retryWrites=true&w=majority&appName=Pet')
