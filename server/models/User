@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
-  name: { type: String, required: [true, "must provide name"] },
-  email: { type: String, required: [true, "must provide Email"] },
+  name: { type: String, required: [true, "Please provide name"] },
+  email: { type: String, required: [true, "Please provide Email"] },
   password: { type: String, required: true },
+  contact: { type: Number, required: [true, "Please provide Contact"] },
 }); //schema for collection
-module.exports = mongoose.model("User", UserSchema); //model is the wrapper for schema
-//mongoose model provides an interface with the mongo db, to perform CRUD
+module.exports = mongoose.model("User", UserSchema); 
