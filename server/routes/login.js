@@ -7,7 +7,8 @@ const {
   getUser,
   getAllPets,
 } = require("../controllers/login");
-router.route("/").post(createUser).get(getUser);
+router.route("/").post(createUser);
+router.route("/get").post(getUser);
 router.route("/addPet").post(addPet);
 router.route("/getAllPets").get(getAllPets);
 // router.route("/:email/:pwd").get(findUser);
