@@ -27,4 +27,17 @@ const start = async () => {
   }
 };
 
+const QRCode = require("qrcode");
+typeof QRCode.toString(
+  "http://192.168.178.70:5500/client/html/whta.html",
+  {
+    errorCorrectionLevel: "H",
+    type: "png",
+  },
+  function (err, data) {
+    if (err) throw err;
+    console.log(data);
+  }
+);
+
 start();

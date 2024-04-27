@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Display a map on a webpage</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+.marker {
+  background-image: url('888711-200.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+</style>
+</head>
+<body>
+  <div style="display: flex;">
+    <div id="map" style="flex: 1; height: 500px;display:block; width: 500px; z-index: -10;"></div>
+  </div>
+
+  <button type="submit" style="display:block; z-index: 50;" id="hi">Search</button>
+
+  
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGVlZWVlZWVlcCIsImEiOiJjbHZodXAyMnQxODFlMmlwZWVjcHh3emhuIn0.cu_lH84WG8CsPkks-6ba5w';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        center: [72.8362972, 19.1231493], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+    });
+
+    // Define long and lat with appropriate values
+    const long = 72.8362972; // Example longitude
+    const lat = 19.1231493; // Example latitude
+    
+    
+
+    const mark = async function () {
+        // const mapboxid = sugg();
+        const geog = await axios.get('https://api.mapbox.com/search/searchbox/v1/retrieve/dXJuOm1ieHJldDpBcE5oSEItdzhLUE9Eb2hHUkVMRDNiOW54Yko3dlNoOG9DZmd5S3ktdTk3cVh6MjhOWkV4cWFkRjIwMm5QZFo5NTNPWU5FY1BoVjMxakRSbGoyWlVKa25jVE5ONUs4dktWUzZhaXlkS2sxQ1lfUGJqZTFWOXRyNEd5MFlZb2x3S1Y4V2RkSEhGbEtaeWZuLV9hOWxCVU5OSTFtMWcyT185OUR1WF9wTXlwc0x5YTVkbEJYaTB4ZmhxRWlJeURCM3VaZUtTdWx1X3g0elBXU1BXU1BfeUNIV2ItN21OMHV3V056c05TUXcyTzQzS2E4bmZSOFlkN2VFM1dOeGYtM1I3QjdrMzBaMDl3T1BVdFgzeDhuLVR5ZGVxNEdPWW5XZFNTQWtPMWMtUVBTWGk0dDFjVUVpSzE3YkxpaTJ4b2l5R3p0c2ZZNEp5U3hENGl4ZTNYVkFwTlZweDJiX3hWUC1LdzBSYXZKX3Q1dTd3ZEotcUh6bnFFYmdqX014ZTVLaGh0cFhTNkhMazZHMENNSHZJZEJxU0dGYVZsQXIya1F3LXRORURSUWNiLWFrcG1sQ1hva1l1TC1WUDdhX2tHTHVyZkoyTWVIQ2FfZm9TRlFpQzNLSzF6ZG5BUnZOZmIyWEJCdFFxR2EyV1RNOWJiLTUwdHQzS0lRbGlhTUZsN1E0ZVcxLVQxTWR0ZVFLdE1IS21ISXZ5Tm82ME1nN2lLUGg5UWNWQ01hd3N6Tm9NZTJYaVVtZ3ROSkxZRDAtdDFXMVRFZkFjaG15YzVGMU9KRm9ZckJUYlBaazlaZnZzX0JlZC0zQktRMC1PaWVyQ1B0aWJyT2VINkZkVDVnOV9OVVREeFh6cHFWaHZvYVhLcnhlQW9DY1dXY1g2OFBXd1BaZTcxRGFWUWgyWGVFSGFWakFybkhNUVl6WlBIMjdrZEQzLWdpQUpvdlMwNHozbG81aEJ5ZFFueEZSV0VTaUxjbnQ1NEJDQWFyZlVBMDJYNWJGWTRhcXozbmZhckRCMU5PQnRBS3NvQTljeXdHY096Q1psLUV6X193Z2RBTmJkbGZ0S0doSE5xX0x5RXE2dTFzc0RhTVJsQUxxWTZNMFRxYUVjS1owSVZvOGx4eFRXb2tZQ21KX3RXd19WeHpzZXFkT0Y2TmdYZXNldmgtWTFlMW11VW5sSE9SSVlXWU1aQnFTNlBjZ0NrRzdUUE82YThfVVhVWEROSWZpcDRBWnVEU0tMODNQdDFnZlVHNFhUVU5GanN0cm9YTHg4M1J6empQRWUwRzZYMHVrLTdwTEJnWW5ORHZKNTFJVml3cjc1a1VadVJFSG9OSTZMMGVnQlA0cjZQeTc0Q0swWTVXNENkVzNvcGc5WGQ4MklqcUIxN19sTk9BZzFGZkV3dWZPMlFmVkh2NHNSSkFlZ3FGN2hGWlh2VVA3eTFHdFBPT0RLTXVPbUVFQ2VEajZJT1EyQ29zN3dIeVhLUHY3aE1SRl9Zak9RQXBQNTFsdncyUFZjeExCY1NiNHlNMkFVYmhRdlg3Y0ZhR3l0Sk8tN3NUMEdwMzQwWjFjRFI3ckZRVDNKcUdrRHpEbzJfbW5SZXVValF4X285WlhqMzd4ZVlTTjVCeG5GMGNaeWVWUTZ6RThjd3pGN1N6R2EtUGlpalpvZWVseDBKQXRoR2lXOWhPenhuUFhVTFZ6SWljSU15Zzc2X2VET0c4QVIwdmtqOEo4SWIzUzgzR1dycHhzMmoyTnlXTlAxYVdQbFVHM2Z6MkZHNWh1T1RLUUdja05fMVc0eWM3R01fRFFpRXZ4QmZ3NHNGVjVtMmpveXlqMWdFUlRVeVVwaVRoNnM0ajRGZ21UNDZGVnJXLUFlLTZNYzMxRGVwWW5CX2ota2hkX1hBaHpVYWpEZ1Q1dWp2NTRqa1laQXZucXViLVhCUFFjX3pDbEZhMU1sTHhyWTBsWDQ3bjRxS1gyLUxuZi1XYVJSRlVUZTMtWUtZR21YY2lPSnoyMzdGVjFjMTFKMVlRPT0=?session_token=076068be-fab7-4dd1-88f2-100dcc70b6a4&access_token=pk.eyJ1IjoiZGVlZWVlZWVlcCIsImEiOiJjbHZodXAyMnQxODFlMmlwZWVjcHh3emhuIn0.cu_lH84WG8CsPkks-6ba5w').then((res)=>res);
+        return geog;
+    }
+
+    // const sugg = async function () {
+    //     const geog = await axios.get(`https://api.mapbox.com/search/searchbox/v1/suggest?q=pet&language=en&poi_category=pet_store&proximity=72.8362972,19.1231493&&session_token=${sessionToken}&access_token=pk.eyJ1IjoiZGVlZWVlZWVlcCIsImEiOiJjbHZodXAyMnQxODFlMmlwZWVjcHh3emhuIn0.cu_lH84WG8CsPkks-6ba5w`).then((res)=>res);
+    //     // return geog.suggestions.mapbox_;
+    //     return geog.data.suggestions[0].mapbox_id;
+    // }
+
+    async function addMarkers() {
+        const geojson = await mark();
+        // console.log(geojson);
+        console.log(geojson.data.features);
+
+
+        for (const feature of geojson.data.features) {
+            const el = document.createElement('div');
+            el.className = 'marker';
+            new mapboxgl.Marker(el)
+            .setLngLat(feature.geometry.coordinates)
+            .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+            `<h3>${feature.properties.name}</h3><p>${feature.properties.full_address}</p>`
+             )
+            ).addTo(map);
+        }
+    }
+
+    addMarkers();
+</script>
+
+</body>
+</html>
+
+
+

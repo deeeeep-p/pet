@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>what????????</div>
+    <video id="video" autoplay></video>
+    <script>
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        console.log("getUserMedia is not supported by this browser.");
+      }
+      navigator.mediaDevices
+        .getUserMedia({ audio: true, video: true })
+        .then(function (stream) {
+          // Use the stream
+          console.log("Stream obtained successfully");
+        })
+        .catch(function (err) {
+          // Handle the error
+          console.error("Error accessing media devices.", err);
+        });
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(function (stream) {
+          var video = document.querySelector("video");
+          video.srcObject = stream;
+        })
+        .catch(function (err) {
+          console.error("Error accessing media devices.", err);
+        });
+    </script>
+  </body>
+</html>
