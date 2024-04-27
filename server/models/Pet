@@ -8,6 +8,8 @@ const PetSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  upForAdoption: { type: Boolean, default: false },
+  image: { type: String, default: null }, // File path or URL to access the uploaded image
 }); //schema for collection
 module.exports = mongoose.model("Pet", PetSchema); //model is the wrapper for schema
 //mongoose model provides an interface with the mongo db, to perform CRUD
