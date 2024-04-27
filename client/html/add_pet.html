@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,26 +9,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <script>
         tailwind.config = {
-          theme: {
-            fontFamily: {
-              pop: ['Poppins', 'sans-serif'],
-            },
-            extend: {
-              colors: {
-                clifford: '#da373d',
-              }
+            theme: {
+                fontFamily: {
+                    pop: ['Poppins', 'sans-serif'],
+                },
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
             }
-          }
         }
-      </script>
+    </script>
 </head>
+
 <body class="bg-[#F4F5F7] font-pop">
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
-        </a>
+            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+            </a>
     </nav>
 
     <div class="container mx-auto px-4 py-8">
@@ -40,47 +42,105 @@
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="petPhoto">
                                 Pet Photo
                             </label>
-                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:shadow-outline" id="petPhoto" type="file">
+                            <input
+                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:shadow-outline"
+                                id="petPhoto" type="file">
                         </div>
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="petName">
                                 Pet Name
                             </label>
-                            <input class="shadow appearance-none border rounded-xl w-full py-2 px-3 bg-gray-100 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="petName" type="text" placeholder="Pet Name">
+                            <input
+                                class="shadow appearance-none border rounded-xl w-full py-2 px-3 bg-gray-100 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="petName" type="text" placeholder="Pet Name">
+                        </div>
+                        <div class="mb-3 flex justify-between items-center space-x-1">
+                            <div class="">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="age">
+                                    Age
+                                </label>
+                                <input
+                                    class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="age" type="text" placeholder="Age in years">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 text-sm font-bold mb-2"
+                                    for="dropdownDefaultRadio">Gender</label>
+
+                                <button id="dropdownRadioButton" data-dropdown-toggle="dropdownDefaultRadio"
+                                    class="text-black rounded-xl border bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center"
+                                    type="button">Gender<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
+
+                                <!-- Dropdown menu -->
+                                <div id="dropdownDefaultRadio"
+                                    class="z-10 hidden w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600">
+                                    <ul class="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownRadioButton">
+                                        <li>
+                                            <div class="flex items-center">
+                                                <input id="default-radio-1" type="radio" value="" name="default-radio"
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <label for="default-radio-1"
+                                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="flex items-center">
+                                                <input checked id="default-radio-2" type="radio" value=""
+                                                    name="default-radio"
+                                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                                <label for="default-radio-2"
+                                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="hobbies">
-                                Hobbies
+                                About
                             </label>
-                            <textarea class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="hobbies" placeholder="Describe your pet's hobbies here..."></textarea>
+                            <textarea
+                                class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="hobbies" placeholder="Describe your pet here..."></textarea>
                         </div>
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="weight">
                                 Weight
                             </label>
-                            <input class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="weight" type="text" placeholder="Weight in kgs">
+                            <input
+                                class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="weight" type="text" placeholder="Weight in kgs">
                         </div>
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="breed">
                                 Breed
                             </label>
-                            <input class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="breed" type="text" placeholder="Breed">
-                        </div>
-                        <div class="mb-3">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="age">
-                                Age
-                            </label>
-                            <input class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="age" type="text" placeholder="Age in years">
+                            <input
+                                class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="breed" type="text" placeholder="Breed">
                         </div>
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="medicalHistory">
                                 Medical History
                             </label>
-                            <textarea class="shadow appearance-none border rounded-lg bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="medicalHistory" placeholder="Describe any medical history here..."></textarea>
+                            <textarea
+                                class="shadow appearance-none border rounded-lg bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="medicalHistory" placeholder="Describe any medical history here..."></textarea>
                         </div>
                         <div class="btn-container mt-2 flex justify-center space-x-2">
-                            <a href="" class="bg-[#5D3FD3] rounded-3xl font-mont font-medium text-white hover:opacity-80 flex justify-center items-center p-1 px-2 text-md">ADD PET</a>
-                            <a href="" class="rounded-3xl border-2 font-medium font-mont border-black text-center text-gray1 flex justify-center items-center btn-secondary p-1 px-2 text-md">Cancel</a>
+                            <a href=""
+                                class="bg-[#5D3FD3] rounded-3xl font-mont font-medium text-white hover:opacity-80 flex justify-center items-center p-1 px-2 text-md">ADD
+                                PET</a>
+                            <a href=""
+                                class="rounded-3xl border-2 font-medium font-mont border-black text-center text-gray1 flex justify-center items-center btn-secondary p-1 px-2 text-md">CANCEL</a>
                         </div>
                     </form>
                 </div>
@@ -109,4 +169,5 @@
 
     </script>
 </body>
+
 </html>

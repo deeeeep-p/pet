@@ -3,6 +3,7 @@ const PetSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name"] },
   type: { type: String, required: [true, "Please provide type"] },
   breed: { type: String, required: [true, "Please provide breed"] },
+  age: { type: Number, required: [true, "Please provide"] },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

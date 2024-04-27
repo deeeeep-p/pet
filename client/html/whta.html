@@ -6,31 +6,50 @@
     <title>Document</title>
   </head>
   <body>
-    <div>what????????</div>
-    <video id="video" autoplay></video>
-    <script>
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-        console.log("getUserMedia is not supported by this browser.");
-      }
-      navigator.mediaDevices
-        .getUserMedia({ audio: true, video: true })
-        .then(function (stream) {
-          // Use the stream
-          console.log("Stream obtained successfully");
-        })
-        .catch(function (err) {
-          // Handle the error
-          console.error("Error accessing media devices.", err);
-        });
-      navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then(function (stream) {
-          var video = document.querySelector("video");
-          video.srcObject = stream;
-        })
-        .catch(function (err) {
-          console.error("Error accessing media devices.", err);
-        });
-    </script>
+    <div class="wha"></div>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        document.querySelector(".wha").innerHTML =
+          "Geolocation is not supported by this browser.";
+        console.log("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      console.log(
+        "Latitude: " +
+          position.coords.latitude +
+          ", Longitude: " +
+          position.coords.longitude
+      );
+      document.querySelector(".wha").insertAdjacentHTML(
+        "afterend",
+        `<a href="https://www.google.com/maps/@${position.coords.latitude},${position.coords.longitude},11z?entry=ttu">
+        what
+     </a>`
+      );
+    }
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          console.log("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          console.log("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          console.log("The request to get user location timed out.");
+          break;
+        case error.UNKNOWN_ERROR:
+          console.log("An unknown error occurred.");
+          break;
+      }
+    }
+    getLocation();
+  </script>
 </html>
