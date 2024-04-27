@@ -3,20 +3,27 @@ from flask_session import Session
 from pymongo import MongoClient
 import requests
 
+
+
 app = Flask(__name__)
 
 client = MongoClient('mongodb+srv://shriharimahabal22:1234@pet.youpnug.mongodb.net/?retryWrites=true&w=majority&appName=Pet')
 
 db = client.test
 
-users = db.users
 
 @app.route('/xyz', methods=['GET','POST'])
-def fn(name, email, password, petName, contact):
+def user_create():
     url = 'http://localhost:4000/api/login'
-    data = {'name': name, 'email': email, 'password': password, 'petName': petName, 'contact': contact}
+    data = {'name': "lasm", 'email': "nn aa,z", 'password': "password", 'contact': "0099999999"}
     response = requests.post(url, json=data)
-    print('Response from server:', response.text)
+    print("*********")
+    json_data = response.json()  # Parse the JSON response
+    user_id = json_data['user']['_id']
+    print(user_id)
+    url='http://localhost:4000/api/addPet/'
+    data = {'name': "lasm", 'type': "dog",'breed':'what', 'user': user_id}
+    response = requests.post(url, json=data)
     return 'hi'
 
 @app.route('/login', methods=['POST'])
@@ -62,7 +69,21 @@ def register():
         users.insert_one({'username': username, 'email': email, 'password': password, 'phone_no': phone_no})
     return render_template('register.html')
 
+@app.route('/book_appointment', methods=['POST'])
+def book_appointment():
+    if request.method == 'POST':
+        pet_name = request.form['pet_name']
+        date = request.form['date']
+        time = request.form['time']
+        description = request.form['description']
 
+        if not pet_name or not date or not time or not description:
+            error = 'Please fill all the details'
+            return render_template('book_appointment.html', error=error)
+        
+        appoinment_req = db.appoinment_req
+        appoinment_req.insert_one({'pet_name': pet_name, 'date': date, 'time': time, 'description': description})
+    return render_template('book_appointment.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
