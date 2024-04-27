@@ -16,6 +16,9 @@ app.use("/api/forum", forum);
 
 app.use("/api/login", login);
 
+app.use("/what", (req, res) => {
+  res.send("hello");
+});
 const start = async () => {
   try {
     await connectDB(url);
