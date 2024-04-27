@@ -22,7 +22,7 @@ const PetAdoptSchema = new mongoose.Schema({
         ref: "UserAdopt",
       },
     ],
-    default: [], // Explicitly set default to an empty array
+    // Explicitly set default to an empty array
   },
 });
 
