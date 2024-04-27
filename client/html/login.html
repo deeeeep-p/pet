@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#F4F5F7]">
+    <div class="container h-[100vh] flex justify-center items-center font-['Poppins',sans-serif]">
+        <div class="flex flex-col justify-between items-center bg-white rounded-xl px-5 py-8 shadow-xl">
+            <img class="w-[2.5rem] h-[2.5rem]" src="C:\Users\shrih\OneDrive\Desktop\test\pet\client\dyn\paw-print.svg" alt="">
+
+            <h1 class="font-bold text-2xl mt-3 mb-5">Login To PetBud</h1>
+            <form action="submit" method="post" class="flex flex-col w-[20rem]" id="loginForm">
+                <label class="my-1" for=email">Email</label>
+                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="email"
+                    id="email" name="email" placeholder="email">
+                <label class="my-1" for="password">Password</label>
+                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="password"
+                    name="password" id="password" placeholder="Enter password">
+                <button type="submit" class="bg-[#5D3FD3] text-white p-1 rounded-xl mt-3 hover:opacity-80">Login</button>
+                <p class="pt-2">Not registered yet? <a class="underline"
+                        href="">Register</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    // LOGIN
+document
+        .querySelector("#loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Get email and password values
+          const email = document.querySelector("#email").value;
+          const password = document.querySelector("#password").value;
+
+          axios
+            .post("http://localhost:4000/api/login/get", {
+              email,
+              password,
+            })
+            .then((res)=>{
+            // document.querySelector(".div").innerHTML=res.user.email 
+            console.log(res);
+            localStorage.setItem("email", email);
+            localStorage.setItem("name", res.data.user.name);
+            localStorage.setItem("id", res.data.user._id);
+            localStorage.setItem("contact", res.data.user.contact);
+            window.location = "userdash.html"
+        })
+            .catch((err) => console.log(err));
+
+          // Clear the form fields
+          document.querySelector("#email").value = "";
+          document.querySelector("#password").value = "";
+        });
+
+
+        // 
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+</html>

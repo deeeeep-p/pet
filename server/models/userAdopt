@@ -1,0 +1,20 @@
+const mongoose = require("mongoose");
+const UserAdoptSchema = new mongoose.Schema({
+  name: { type: String, required: [true, "Please provide name"] },
+  description: { type: String, default: null },
+  location: { type: Number, required: [true, "Please provide age"] },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  image: { type: String, default: null }, // File path or URL to access the uploaded image
+  likedBy: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "PetAdopt",
+    },
+  ],
+});
+
+module.exports = mongoose.model("UserAdopt", UserAdoptSchema);
