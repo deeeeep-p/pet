@@ -12,10 +12,10 @@ client = MongoClient('mongodb+srv://shriharimahabal22:1234@pet.youpnug.mongodb.n
 db = client.test
 
 
-@app.route('/xyz', methods=['GET','POST'])
-def user_create():
+@app.route('/create_user', methods=['GET','POST'])
+def user_create(name, email, password, contact):
     url = 'http://localhost:4000/api/login'
-    data = {'name': "lasm", 'email': "nn aa,z", 'password': "password", 'contact': "0099999999"}
+    data = {'name': name, 'email': email, 'password': password, 'contact': contact}
     response = requests.post(url, json=data)
     print("*********")
     json_data = response.json()  # Parse the JSON response
