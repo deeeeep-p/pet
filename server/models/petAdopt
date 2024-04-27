@@ -13,7 +13,14 @@ const PetAdoptSchema = new mongoose.Schema({
     required: true,
   },
 
-  image: { type: String, default: null }, // File path or URL to access the uploaded image
+  image: { type: String, default: null },
+  // File path or URL to access the uploaded image
+  likedBy: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "UserAdopt",
+    },
+  ],
 });
 
 module.exports = mongoose.model("PetAdopt", PetAdoptSchema);
