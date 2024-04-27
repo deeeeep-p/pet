@@ -1,4 +1,4 @@
-document
+/* document
         .querySelector("#loginForm")
         .addEventListener("submit", function (event) {
           event.preventDefault(); // Prevent the default form submission
@@ -26,4 +26,25 @@ document
           // Clear the form fields
           document.querySelector("#email").value = "";
           document.querySelector("#password").value = "";
-        });
+        }); */
+
+/////////NOTE REGISTER:
+document.querySelector("#regiFormm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const email = document.querySelector("#regi-email").value;
+  const password = document.querySelector("#regi-password").value;
+  const user = document.querySelector("#regi-user").value;
+  const contact = document.querySelector("#regi-contact").value;
+
+  axios
+    .post("http://localhost:4000/api/login/register", {
+      email,
+      password,
+      user,
+      contact,
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+});
