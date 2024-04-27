@@ -37,7 +37,7 @@
             <div class="md:flex">
                 <div class="p-7">
                     <div class="font-bold text-2xl mt-1 mb-5">Add Pet Details</div>
-                    <form id="petForm" class="mt-4">
+                    <form type="submit" id="petForm" class="mt-4">
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="petPhoto">
                                 Pet Photo
@@ -119,13 +119,24 @@
                                 class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="weight" type="text" placeholder="Weight in kgs">
                         </div>
-                        <div class="mb-3">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="breed">
-                                Breed
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="breed" type="text" placeholder="Breed">
+                        <div class="flex space-x-1 justify-center items-center mb-3">
+                            <div>
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="type">
+                                    Type
+                                </label>
+                                <input
+                                    class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="petType" type="text" placeholder="Ex. Dog">
+                            </div>
+
+                            <div class="">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="breed">
+                                    Breed
+                                </label>
+                                <input
+                                    class="shadow appearance-none border rounded-xl bg-gray-100 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    id="breed" type="text" placeholder="Breed">
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="medicalHistory">
@@ -136,9 +147,9 @@
                                 id="medicalHistory" placeholder="Describe any medical history here..."></textarea>
                         </div>
                         <div class="btn-container mt-2 flex justify-center space-x-2">
-                            <a href=""
+                            <button type="submit"
                                 class="bg-[#5D3FD3] rounded-3xl font-mont font-medium text-white hover:opacity-80 flex justify-center items-center p-1 px-2 text-md">ADD
-                                PET</a>
+                                PET</button>
                             <a href=""
                                 class="rounded-3xl border-2 font-medium font-mont border-black text-center text-gray1 flex justify-center items-center btn-secondary p-1 px-2 text-md">CANCEL</a>
                         </div>
@@ -148,26 +159,47 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
     <script>
-        // document.querySelector('#petForm').addEventListener('submit', function (event){
-        //     event.preventDefault();
+        document.querySelector('#petForm').addEventListener('submit', function (event){
+            event.preventDefault();
 
 
-        //   // Get email and password values
-        //   const email = document.querySelector("#email").value;
-        //   const password = document.querySelector("#password").value;
+          // Get email and password values
+          const name = document.querySelector("#petName").value;
+          const breed = document.querySelector("#breed").value;
+          const type = document.querySelector("#petType").value;
+          const age = document.querySelector("#age").value;
+              
+            // const user = localStorage.getItem("id");
+            const user = '662ccf8841fe1b31846fc4bc';
+          
 
-        //   axios
-        //     .post("http://localhost:4000/api/pet/createPet", {
-        //       email,
-        //       password,
-        //     })
-        //     .then((res)=>{
-        //     // document.querySelector(".div").innerHTML=res.user.email 
-        //     console.log(res);
-        // })
+          axios
+            .post("http://localhost:4000/api/pet/createPet", {
+              name,
+              type,
+              breed,
+              age,
+              user
+            })
+            .then((res)=>{
+            // document.querySelector(".div").innerHTML=res.user.email 
+            console.log(res);
+        })
+            // window.location = "userdash.html"
+            .catch((err) => console.log(err));
+        
+          // Clear the form fields
+        //   document.querySelector("#email").value = "";
+        //   document.querySelector("#password").value = "";
+        });
+
+        
 
     </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 </body>
 
 </html>
