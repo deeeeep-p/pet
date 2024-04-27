@@ -94,17 +94,16 @@
           console.log(res);
           if (res.status === 200) {
             alert("Registration successful");
-            const _id = res.data._id;
-            const email = res.data.email;
-            const name = res.data.name;
-            const contact = res.data.contact;
+            const _id = res.data.user._id;
+            const email = res.data.user.email;
+            const name = res.data.user.name;
+            const contact = res.data.user.contact;
             console.log(_id);
             localStorage.setItem("email", email);
             localStorage.setItem("name", name);
             localStorage.setItem("id", _id);
             localStorage.setItem("contact", contact);
-            window.location.href =
-              "/Users/deeppatel/Desktop/projects/pet/client/html/login.html";
+            window.location.href = "login.html";
           } else {
             alert("Registration failed");
           }
