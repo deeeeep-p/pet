@@ -60,4 +60,16 @@ const getUser = async (req, res) => {
       .json({ err: err.message || "Internal Server Error" });
   }
 };
-module.exports = { createUser, addPet, getUser };
+const getAllPets = async (req, res) => {
+  try {
+    const pets = await Pet.find({ user: req.body.user });
+    return res.status(200).json({ pets });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ err: err.message || "Internal Server Error" });
+  }
+};
+
+module.exports = { createUser, addPet, getUser, getAllPets };
