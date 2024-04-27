@@ -12,9 +12,9 @@ db = client.test
 users = db.users
 
 @app.route('/xyz', methods=['GET','POST'])
-def fn():
+def fn(name, email, password, petName, contact):
     url = 'http://localhost:4000/api/login'
-    data = {'name': 'hello', 'email': 'deepp', 'password': '1234'}
+    data = {'name': name, 'email': email, 'password': password, 'petName': petName, 'contact': contact}
     response = requests.post(url, json=data)
     print('Response from server:', response.text)
     return 'hi'
@@ -61,6 +61,8 @@ def register():
         
         users.insert_one({'username': username, 'email': email, 'password': password, 'phone_no': phone_no})
     return render_template('register.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
