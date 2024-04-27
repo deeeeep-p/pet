@@ -9,7 +9,7 @@ const createUser = async (req, res) => {
         .json({ message: "User is already present", exists });
     } else {
       const user = await User.create(req.body);
-      return res.status(201).json({ user });
+      return res.status(200).json({ user });
     }
   } catch (err) {
     console.error(err);
