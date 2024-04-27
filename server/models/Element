@@ -1,0 +1,23 @@
+const mongoose = require("mongoose");
+
+const elementSchema = new mongoose.Schema({
+  string: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  likes: { type: Number, default: 0 },
+  dislikes: { type: Number, default: 0 },
+  parentElement: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Element",
+    default: null,
+  },
+  // image: { type: String, default: null },
+});
+
+module.exports = mongoose.model("Element", elementSchema);
