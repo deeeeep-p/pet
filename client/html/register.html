@@ -1,37 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  </head>
 
-<body class="bg-[#F4F5F7]">
-    <div class="h-[100vh] flex justify-center items-center font-['Poppins',sans-serif]">
-        <div id="login-container" class="flex flex-col justify-between items-center bg-white rounded-xl px-5 py-8 shadow-xl">
-            <img class="w-[2.5rem] h-[2.5rem]" src="pet\client\dyn\paw-print.svg" alt="">
+  <body class="bg-[#F4F5F7]">
+    <div
+      class="h-[100vh] flex justify-center items-center font-['Poppins',sans-serif]"
+    >
+      <div
+        id="login-container"
+        class="flex flex-col justify-between items-center bg-white rounded-xl px-5 py-8 shadow-xl"
+      >
+        <img
+          class="w-[2.5rem] h-[2.5rem]"
+          src="pet\client\dyn\paw-print.svg"
+          alt=""
+        />
 
-            <h1 class="font-bold text-2xl mt-3 mb-5">Register Your Account</h1>
-            <form action="" method="post" class="flex flex-col w-[20rem]">
-                <label class="my-1" for="username">Username</label>
-                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="text"
-                    id="username" name="username" placeholder="Username">
-                <label class="my-1" for="email">Email</label>
-                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="email"
-                    id="email" name="email" placeholder="johndoe@gmail.com">
-                <label class="my-1" for="contact">Phone No.</label>
-                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="text" maxlength="10" id="contact" name="contact" placeholder="9820231536">
-                <label class="my-1" for="password">Password</label>
-                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="password"
-                    name="password" id="password" placeholder="Enter password">
-                <button type="submit" class="bg-[#5D3FD3] text-white p-1 rounded-xl mt-3 hover:opacity-80">Register</button>
-                <p class="pt-2">Not registered yet? <a class="underline"
-                    href="{{url_for('register')}}">Register</a></p>
-            </form>
-        </div>
+        <h1 class="font-bold text-2xl mt-3 mb-5">Register Your Account</h1>
+        <form
+          action=""
+          method="post"
+          class="flex flex-col w-[20rem]"
+          id="regiFormm"
+        >
+          <label class="my-1" for="username" id="user">Username</label>
+          <input
+            class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500"
+            type="text"
+            id="regi-user"
+            name="username"
+            placeholder="Username"
+          />
+          <label class="my-1" for="email" id="regi-email">Email</label>
+          <input
+            class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="johndoe@gmail.com"
+          />
+          <label class="my-1" for="contact" id="regi-contact">Phone No.</label>
+          <input
+            class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500"
+            type="text"
+            maxlength="10"
+            id="contact"
+            name="contact"
+            placeholder="9820231536"
+          />
+          <label class="my-1" for="password" id="regi-password">Password</label>
+          <input
+            class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter password"
+          />
+          <button
+            type="submit"
+            class="bg-[#5D3FD3] text-white p-1 rounded-xl mt-3 hover:opacity-80"
+          >
+            Register
+          </button>
+          <p class="pt-2">
+            Not registered yet?
+            <a class="underline" href="{{url_for('register')}}">Register</a>
+          </p>
+        </form>
+      </div>
     </div>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const regiForm = document.getElementById("regiFormm");
+      regiForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("regi-user").value;
+        const email = document.getElementById("email").value;
+        const contact = document.getElementById("contact").value;
+        const password = document.getElementById("password").value;
+        const data = {
+          name,
+          email,
+          contact,
+          password,
+        };
+        try {
+          const res = await axios.post("http://localhost:4000/api/login", data);
+          console.log(res);
+          if (res.status === 200) {
+            alert("Registration successful");
+            const _id = res.data.user._id;
+            const email = res.data.user.email;
+            const name = res.data.user.name;
+            const contact = res.data.user.contact;
+            console.log(_id);
+            localStorage.setItem("email", email);
+            localStorage.setItem("name", name);
+            localStorage.setItem("id", _id);
+            localStorage.setItem("contact", contact);
+            window.location.href = "login.html";
+          } else {
+            alert("Registration failed");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  </body>
 </html>

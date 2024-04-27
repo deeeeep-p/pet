@@ -1,15 +1,19 @@
 const mongoose = require("mongoose");
-const PetSchema = new mongoose.Schema({
+const PetAdoptSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name"] },
+  introduction: { type: String, default: null },
+  weight: { type: Number, default: null },
   type: { type: String, required: [true, "Please provide type"] },
   breed: { type: String, required: [true, "Please provide breed"] },
-  user: {
+  age: { type: Number, required: [true, "Please provide age"] },
+  medicalHistory: { type: String, default: null },
+  petId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Pet",
     required: true,
   },
-  upForAdoption: { type: Boolean, default: false },
+
   image: { type: String, default: null }, // File path or URL to access the uploaded image
-}); //schema for collection
-module.exports = mongoose.model("Pet", PetSchema); //model is the wrapper for schema
-//mongoose model provides an interface with the mongo db, to perform CRUD
+});
+
+module.exports = mongoose.model("PetAdopt", PetAdoptSchema);

@@ -12,10 +12,10 @@ const connectDB = (url) => {
 };
 const forum = require("./routes/forum");
 const login = require("./routes/login");
+const pet = require("./routes/pet");
 app.use("/api/forum", forum);
-
 app.use("/api/login", login);
-
+app.use("/api/pet", pet);
 const start = async () => {
   try {
     await connectDB(url);
