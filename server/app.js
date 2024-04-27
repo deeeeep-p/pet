@@ -10,8 +10,10 @@ const mongoose = require("mongoose");
 const connectDB = (url) => {
   return mongoose.connect(url);
 };
-
+const forum = require("./routes/forum");
 const login = require("./routes/login");
+app.use("/api/forum", forum);
+
 app.use("/api/login", login);
 
 const start = async () => {
