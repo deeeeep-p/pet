@@ -13,9 +13,13 @@ const connectDB = (url) => {
 const forum = require("./routes/forum");
 const login = require("./routes/login");
 const pet = require("./routes/pet");
+const petAdopt = require("./routes/petAdopt");
+const userAdopt = require("./routes/userAdopt");
 app.use("/api/forum", forum);
 app.use("/api/login", login);
 app.use("/api/pet", pet);
+app.use("/api/petAdopt", petAdopt);
+app.use("/api/userAdopt", userAdopt);
 const start = async () => {
   try {
     await connectDB(url);
