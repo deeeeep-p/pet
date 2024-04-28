@@ -92,7 +92,7 @@
 
   <nav class="fixed top-0 bg-white p-4 border-gray-200 dark:bg-gray-900 w-full z-50 shadow-sm">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PetBud</span>
         </a>
@@ -131,6 +131,8 @@
 
   <section class="bg-center background bg-no-repeat backgroundimage bg-gray-400 bg-blend-multiply relative top-20">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+      <div id="header-wrap">
+      </div>
       <h1 class="typewriter mb-8 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Welcome to Your Digital Companion for Modern Pet Ownership</h1>
       <p class="mt-4 text-lg font-semibold text-gray-300 lg:text-xl sm:px-16 lg:px-48">With PetBud, you'll gain access to a wealth of resources, tips, and expert advice on pet care, training, and health, ensuring that your pets receive the best possible care and attention.</p>
     </div>
@@ -233,13 +235,13 @@
                 <p class="mt-2 text-white text-md">
                     All pets deserve Love. We help them find it.
                 </p>
-                    <div class="w-full">
+                    <!-- <div class="w-full">
                         <p class="mt-2 mb-4 text-sm text-white">We care about your privacy</p>
-                    </div>
-                <button
-                        class="text-md p-2 bg-blue-500 text-white rounded-md shadow-md focus:outline-none focus:ring focus:ring-blue-200 transition duration-300 transform hover:scale-105">
+                    </div> -->
+                <a href="adopt-give.html"
+                        class="mt-2 text-md p-2 bg-blue-500 text-white rounded-md shadow-md focus:outline-none focus:ring focus:ring-blue-200 transition duration-300 transform hover:scale-105">
                         Get Started
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -274,6 +276,16 @@
         }
       });
     });
+    console.log(localStorage.getItem('name'))
+    const div = document.querySelector('#header-wrap');
+    const head = document.createElement('h1');
+    head.classList.add("text-white");
+    head.classList.add("text-2xl");
+    head.classList.add("font-bold");
+
+
+    div.appendChild(head);
+    head.innerHTML = `Hi, ${localStorage.getItem('name')}!`;
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
