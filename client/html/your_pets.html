@@ -1,91 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pet Profile</title>
     <!-- Linking Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        body {
-            font-family: 'Lato', sans-serif;
-        }
+      body {
+        font-family: "Lato", sans-serif;
+      }
     </style>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
 
-</head>
-
-<body class="bg-gray-200 h-screen">
-
-    <nav class="fixed top-0 bg-white p-4 border-gray-200 dark:bg-gray-900 w-full z-50 shadow-sm">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
-            <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-paw-print"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">PetBud</span>
-            </a>
-        </div>
+  <body class="bg-gray-200 h-screen">
+    <a
+      href="add_pet.html"
+      id="addButton"
+      style="z-index: 50"
+      class="fixed top-4 right-8 border border-gray-900 p-2 text-black rounded-lg flex items-center justify-center focus:outline-none focus:ring focus:ring-gray-800"
+    >
+      <h2 class="text-lg">Add a pet</h2>
+    </a>
+    <nav
+      style="z-index: -10"
+      class="fixed top-0 bg-white p-4 border-gray-200 dark:bg-gray-900 w-full z-50 shadow-sm"
+    >
+      <div
+        class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1"
+      >
+        <a
+          href=""
+          class="flex items-center space-x-3 rtl:space-x-reverse"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-paw-print"
+          >
+            <circle cx="11" cy="4" r="2" />
+            <circle cx="18" cy="8" r="2" />
+            <circle cx="20" cy="16" r="2" />
+            <path
+              d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"
+            />
+          </svg>
+          <span
+            class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            >PetBud</span
+          >
+        </a>
+      </div>
     </nav>
     
   
    
-  <div class="fixed bottom-0 left-0 z-50 w-full h-20 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-    <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-        <button type="button" class="inline-flex flex-col items-center justify-center px-5 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600">
-            <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
-            </svg>
-            <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Home</span>
-        </button>
-        <button type="button" class="inline-flex flex-col items-center justify-center px-5 border-e border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600">
-            <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z"/>
-                <path d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z"/>
-            </svg>
-            <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Wallet</span>
-        </button>
-        <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
-            <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12.25V1m0 11.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M4 19v-2.25m6-13.5V1m0 2.25a2.25 2.25 0 0 0 0 4.5m0-4.5a2.25 2.25 0 0 1 0 4.5M10 19V7.75m6 4.5V1m0 11.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5ZM16 19v-2"/>
-            </svg>
-            <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Settings</span>
-        </button>
-        <button type="button" class="inline-flex flex-col items-center justify-center px-5 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 group border-x dark:border-gray-600">
-            <svg class="w-5 h-5 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
-            </svg>
-            <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Profile</span>
-        </button>
-    </div>
-</div>
+    <div class="fixed bottom-0 left-0 z-50 w-full h-20 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+        <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+            <a href="index.html" class="inline-flex flex-col items-center justify-center px-5 border-gray-200 border-x hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600">
+                <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                </svg>
+                <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Home</span>
+            </a>
+            <a href="adopt-give.html" class="inline-flex flex-col items-center justify-center px-5 border-e border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 group dark:border-gray-600">
+                <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z"/>
+                    <path d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z"/>
+                </svg>
+                <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Adopt</span>
+            </a>
+            <a href="your_pets.html" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
+                <svg  class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M106.0864 104.68352l7.54688 145.27488 75.2128 105.59488 157.95712-196.1984-114.25792-54.67136H106.0864z m794.09152-20.31616l9.09824 145.18784-62.65856 113.48992-179.33312-176.8704 107.264-67.35872 125.62944-14.44864z" fill="#ffffff"></path><path d="M851.36896 725.10464v101.88288c0 44.56448-36.12672 80.72192-80.72192 80.72192H250.38336c-44.56448 0-80.72192-36.15744-80.72192-80.72192v-109.07648c0 44.5952 36.15744 80.72192 80.72192 80.72192h520.26368c44.5952 0 80.72192-36.12672 80.72192-80.72192v7.1936z" fill="#ffffff"></path><path d="M637.24032 168.07936a340.90496 340.90496 0 0 1 114.28864 75.50976c61.70112 61.70112 99.84 146.89792 99.84 241.01376v233.30816c0 44.5952-36.12672 80.72192-80.72192 80.72192H250.38336c-44.56448 0-80.72192-36.12672-80.72192-80.72192V484.60288c0-188.23168 152.62208-340.85376 340.85376-340.85376 44.78976 0 87.56224 8.63232 126.72512 24.33024z m83.85536 169.72288a23.20896 23.20896 0 0 0-6.8096-16.46592 23.05024 23.05024 0 0 0-16.43008-6.8096 23.20896 23.20896 0 0 0-16.46592 6.8096 23.1936 23.1936 0 0 0-6.8096 16.46592c0 6.4256 2.59072 12.2112 6.8096 16.43008a23.33184 23.33184 0 0 0 16.46592 6.8096 23.23968 23.23968 0 0 0 23.23968-23.23968z m-363.52 0a23.20896 23.20896 0 0 0-6.8096-16.46592c-4.21888-4.21888-10.04032-6.8096-16.46592-6.8096s-12.24192 2.59072-16.43008 6.8096a23.1936 23.1936 0 0 0-6.8096 16.46592c0 6.4256 2.59072 12.2112 6.8096 16.43008a23.26528 23.26528 0 0 0 39.7056-16.43008z" fill="#ffffff"></path><path d="M714.28608 321.33632a23.1936 23.1936 0 0 1 6.8096 16.46592 23.23968 23.23968 0 0 1-23.23968 23.23968 23.33696 23.33696 0 0 1-16.46592-6.8096 23.12192 23.12192 0 0 1-6.8096-16.43008c0-6.4256 2.59072-12.24192 6.8096-16.46592a23.1936 23.1936 0 0 1 16.46592-6.8096c6.4256 0 12.24192 2.59072 16.43008 6.8096z m-363.52 0a23.2704 23.2704 0 0 1-32.896 32.896 23.12192 23.12192 0 0 1-6.8096-16.43008c0-6.4256 2.59072-12.24192 6.8096-16.46592a23.06048 23.06048 0 0 1 16.43008-6.8096 23.1936 23.1936 0 0 1 16.46592 6.8096z" fill="#1c1c1c"></path><path d="M334.30528 383.42144a45.32224 45.32224 0 0 1-32.256-13.36832 45.32736 45.32736 0 0 1-13.3632-32.256c0-12.20096 4.74624-23.67488 13.3632-32.28672a45.1584 45.1584 0 0 1 32.256-13.3632 45.38368 45.38368 0 0 1 32.28672 13.35808 45.37344 45.37344 0 0 1 13.36832 32.29184c-0.00512 25.15968-20.48512 45.62432-45.65504 45.62432z" fill="#3b3b3b"></path><path d="M334.30528 336.90624c-0.17408 0-0.37888 0.02048-0.54784 0.19456-0.2816 0.2816-0.31232 0.49664-0.31232 0.70144 0 0.18432 0.02048 0.36864 0.25088 0.60416a0.80896 0.80896 0 0 0 0.60928 0.26112 0.89088 0.89088 0 0 0 0.896-0.86528 0.83456 0.83456 0 0 0-0.26112-0.64512 0.82944 0.82944 0 0 0-0.63488-0.25088zM697.856 383.42144a45.5168 45.5168 0 0 1-32.2304-13.30176 45.3632 45.3632 0 0 1-13.42464-32.31744c0-12.20096 4.74624-23.67488 13.3632-32.28672a45.37856 45.37856 0 0 1 32.29184-13.3632c12.24192 0 23.71584 4.76672 32.3072 13.41952a45.29664 45.29664 0 0 1 13.30688 32.23552c0.00512 25.14944-20.45952 45.61408-45.61408 45.61408z" fill="#3b3b3b"></path><path d="M697.856 336.90624a0.8192 0.8192 0 0 0-0.64512 0.26112 0.80896 0.80896 0 0 0-0.25088 0.64c0 0.18432 0.02048 0.36864 0.25088 0.60416 0.26112 0.26112 0.5376 0.26112 0.64512 0.26112a0.86528 0.86528 0 0 0 0.86528-0.86528 0.84992 0.84992 0 0 0-0.256-0.64512 0.77312 0.77312 0 0 0-0.60928-0.256z" fill="#3b3b3b"></path><path d="M587.3664 532.1728v65.024c0 37.7856-30.72 68.5056-68.5056 68.5056-18.3296 0-35.4816-7.1168-48.4352-20.0704a68.12672 68.12672 0 0 1-20.0192-48.4352v-67.8912c17.4592-9.3184 33.0752-15.7696 46.08-30.5152v105.472c0 12.3392 10.0352 22.3744 22.3744 22.3744s22.3744-10.0352 22.3744-22.3744v-105.472c13.2608 13.6192 28.8256 24.9856 46.1312 33.3824z" fill="#ffffff"></path><path d="M658.4832 503.7056c12.3392 0 22.3744 10.0352 22.3744 22.3744 0 12.3904-10.0352 22.3744-22.3744 22.3744-8.96 0-17.7664-0.7168-26.368-2.1504v50.8928c0 62.464-50.7904 113.2544-113.2544 113.2544-30.2592 0-58.7264-11.776-80.0768-33.1776-21.4016-21.4016-33.1776-49.8176-33.1776-80.0768v-51.8656c-10.2912 2.048-20.992 3.1232-31.8976 3.1232-12.3904 0-22.3744-9.984-22.3744-22.3744 0-12.3392 9.984-22.3744 22.3744-22.3744 65.4336 0 118.7328-53.248 118.7328-118.7328a22.3232 22.3232 0 0 1 22.3232-22.3744c0.512 0 0.9216 0.1024 1.4336 0.1024 0.3584 0 0.768-0.1024 1.1776-0.1024 12.3392 0 22.3744 10.0352 22.3744 22.3744 0 65.4848 53.248 118.7328 118.7328 118.7328z m-71.1168 93.4912v-65.024a164.94592 164.94592 0 0 1-46.1312-33.3824v105.472c0 12.3392-10.0352 22.3744-22.3744 22.3744s-22.3744-10.0352-22.3744-22.3744v-105.472c-13.0048 14.7456-28.6208 21.1968-46.08 30.5152v67.8912c0 18.3296 7.1168 35.4816 20.0192 48.4352 12.9536 12.9536 30.1056 20.0704 48.4352 20.0704 37.7856 0 68.5056-30.72 68.5056-68.5056z" fill="#3b3b3b"></path><path d="M926.49472 95.16544a22.36416 22.36416 0 0 0-17.10592-22.78912c-99.52768-24.59136-202.07104 1.50016-277.38112 69.8624a361.6256 361.6256 0 0 0-121.48736-20.86912 361.29792 361.29792 0 0 0-129.80224 23.99744C303.45216 78.86336 199.88992 55.55712 100.8128 83.1232c-0.3584 0.1024-0.67072 0.2816-1.01888 0.39936a22.41536 22.41536 0 0 0-10.57792 7.45472 22.4512 22.4512 0 0 0-3.92704 7.90016c-0.1024 0.36864-0.27136 0.70656-0.35328 1.08544-21.78048 100.74624 7.68512 202.97216 78.87872 276.22912a361.9072 361.9072 0 0 0-16.53248 108.416v342.38464c0 56.84736 46.24896 103.10144 103.10144 103.10144h520.26368c56.85248 0 103.10144-46.25408 103.10144-103.10144V484.608a363.8272 363.8272 0 0 0-18.47296-114.59584c68.05504-74.4704 94.54592-175.94368 71.2192-274.84672z m-42.0352 17.63328c15.4624 74.91072-2.2528 150.9632-48.36864 210.56512a363.63264 363.63264 0 0 0-68.72576-95.5904 361.3952 361.3952 0 0 0-89.51808-65.64352c58.55232-45.35808 133.00736-63.3344 206.61248-49.3312z m-758.31296 10.1888c73.63072-16.47104 149.08416-0.59904 209.23904 43.48416a365.77792 365.77792 0 0 0-153.28256 163.1232c-47.6928-57.48736-68.096-132.00384-55.95648-206.60736z m702.848 704.00512c0 32.16896-26.17344 58.3424-58.3424 58.3424H250.38336c-32.16896 0-58.3424-26.17344-58.3424-58.3424v-24.1664a102.4512 102.4512 0 0 0 58.3424 18.18624h520.26368a102.4512 102.4512 0 0 0 58.3424-18.18624v24.1664z m0-153.35936v44.27264c0 32.16896-26.17344 58.3424-58.3424 58.3424H250.38336c-32.16896 0-58.3424-26.17344-58.3424-58.3424V688.08192 484.60288c0-175.61088 142.86848-318.47424 318.47424-318.47424a316.88704 316.88704 0 0 1 116.93056 22.1696c0.8192 0.38912 1.65888 0.71168 2.52416 1.00352a316.6976 316.6976 0 0 1 105.73824 70.10816c60.16 60.15488 93.2864 140.12928 93.2864 225.18784v189.03552z" fill="#3b3b3b"></path></g></svg>
+                <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Your Pets</span>
+            </a>
+            <a href="locater.html" class="inline-flex flex-col items-center justify-center px-5 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 group border-x dark:border-gray-600">
+              <svg class="w-6 h-6 mb-2 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500" fill="#696969" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28.176 48.261" xml:space="preserve" stroke="#696969"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M28.175,14.114C28.176,6.318,21.87,0,14.088,0C6.307,0,0,6.318,0,14.114c0,1.971,0.401,3.849,1.13,5.551l0.046,0.103 l0.143,0.314l12.769,28.179l12.77-28.179L27,19.768l0.045-0.103h-0.001C27.773,17.963,28.175,16.085,28.175,14.114z M19.525,19.665 c-1.403,1.381-3.321,2.227-5.438,2.227c-2.116,0-4.034-0.846-5.438-2.227c-1.436-1.411-2.326-3.378-2.326-5.551 c0-4.297,3.475-7.785,7.764-7.785s7.764,3.488,7.764,7.785C21.852,16.287,20.963,18.254,19.525,19.665z"></path> </g></svg>
+                <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Locator</span>
+            </a>
+        </div>
+      </div>
+
 
     <div class="container mx-auto p-6">
-        <h1 class="text-2xl font-bold mb-4 text-blue-700">My Pet Profile</h1>
-        <!-- Pet Information -->
+      <!-- Pet Information -->
 
-        <div class="container mx-auto">
-            <div id="petCardsContainer"></div>
-        </div>
-
+      <div class="container mx-auto">
+        <div id="petCardsContainer"></div>
+      </div>
     </div>
-    <button id="addButton" class="fixed top-2 right-8 border border-black p-2 text-black rounded-lg flex items-center justify-center hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-200">
-        <h2 class="text-lg">Adopt a pet</h2>
-    </button>
 
     <script>
-        const requestData = {
-            user: "662ccf8841fe1b31846fc4bc"
-        };
+      const requestData = {
+        user: "662ccf8841fe1b31846fc4bc",
+      };
 
-        // Make the POST request
-        axios.post('http://localhost:4000/api/pet/getAllPets', requestData)
-        .then(response => {
-            const pets = response.data.pets;
-            const container = document.getElementById('petCardsContainer');
+      // Make the POST request
+      axios
+        .post("http://localhost:4000/api/pet/getAllPets", requestData)
+        .then((response) => {
+          const pets = response.data.pets;
+          const container = document.getElementById("petCardsContainer");
 
-            // Use map to create HTML for each pet card
-            const petCardsHTML = pets.map(pet => `
+          // Use map to create HTML for each pet card
+          const petCardsHTML = pets
+            .map(
+              (pet) => `
                 <div class="bg-white shadow-2xl rounded-3xl overflow-hidden">
             <div class="p-4">
                 <h2 class="text-lg font-semibold mb-2">Pet Details</h2>
@@ -126,21 +161,19 @@
                 </div>
             </div>
         </div>
-            `).join('');
+            `
+            )
+            .join("");
 
-            // Append the pet cards HTML to the container
-            container.innerHTML = petCardsHTML;
+          // Append the pet cards HTML to the container
+          container.innerHTML = petCardsHTML;
         })
-        .catch(error => {
-            console.error('Error:', error); // Log any errors
+        .catch((error) => {
+          console.error("Error:", error); // Log any errors
         });
     </script>
-</body>
-
-
-
+  </body>
 </html>
-
 
 <!-- <!DOCTYPE html>
 <html lang="en">
