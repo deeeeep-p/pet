@@ -8,6 +8,8 @@
     <!-- Linking Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <style>
         body {
             font-family: 'Lato', sans-serif;
@@ -64,7 +66,7 @@
         <h1 class="text-xl md:text-2xl font-bold mb-4 text-black text-center">Adoption Form</h1>
         <div class="bg-white shadow-2xl rounded-3xl overflow-hidden">
             <div class="p-4">
-                <form action="submit" method="post" enctype="multipart/form-data" id="#loginForm">
+                <form method="post" enctype="multipart/form-data" id="loginForm">
                     <div class="mb-4">
                         <label for="image" class="block text-gray-700 font-semibold mb-2">Upload Your Photo</label>
                         <input type="file" id="image" name="image" accept="image/*" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
@@ -82,8 +84,8 @@
                         <textarea class="bg-gray-100 border border-gray-400 rounded-md shadow-sm h-20 w-full" name="description" id="description"></textarea>
                     </div>
                     <div class="mb-4">
-                        <label for="location" class="block text-gray-700 font-semibold mb-2">How many pets do you have?</label>
-                        <input type="text" id="location" name="location" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
+                        <label for="pets" class="block text-gray-700 font-semibold mb-2">How many pets do you have?</label>
+                        <input type="text" id="pets" name="pets" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
                     </div>
                     <div class="mt-6">
                         <button type="submit" class="btn bg-black text-white text-lg font-semibold px-6 py-3 rounded-xl shadow-xl w-full hover:bg-blue-600">Submit</button>
@@ -95,38 +97,40 @@
 </body>
 
 <script>
-document
-        .querySelector("#loginForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the default form submission
-
-          // Get email and password values
-        //   const email = document.querySelector("#email").value;
-          const name = localStorage.getItem('name');
-          const loc = document.querySelector("#location").value;
-          const pets = document.querySelector("#pets").value;
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector("#loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            // Get the form data
+            const name = localStorage.getItem('name');
+            const loca = document.querySelector("#location").value;
+            const pets = document.querySelector("#pets").value;
             const user = localStorage.getItem('id');
-          const desc = document.querySelector("#description").value;
+            const desc = document.querySelector("#description").value;
 
-          axios
-            .post("http://localhost:4000/api/userAdopt/createProfile", {
-              name,
-              desc,
-              loc,
-                user
+            console.log(loca);
+            console.log(pets);
+            console.log(desc);
+            
+
+    
+            // Make the AJAX request
+            axios.post("http://localhost:4000/api/userAdopt/createProfile", {
+               name:name,
+                desc:desc,
+                loca:loca,
+                user:user
             })
-            .then((res)=>{
-            // document.querySelector(".div").innerHTML=res.user.email 
-            console.log(res);
-            // window.location = "hinge.html"
-        })
-            .catch((err) => console.log(err));
-
-          // Clear the form fields
-          document.querySelector("#email").value = "";
-          document.querySelector("#password").value = "";
+            .then((res) => {
+                console.log(res);
+                window.location = "hinge.html";
+            })
+            .catch((err) => {
+                console.log(err);
+                // window.location = "login.html";
+            });
         });
-
-</script>
-
+    });
+    </script>
+    
 </html>
