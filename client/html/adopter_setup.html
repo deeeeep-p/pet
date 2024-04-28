@@ -64,22 +64,22 @@
         <h1 class="text-xl md:text-2xl font-bold mb-4 text-black text-center">Adoption Form</h1>
         <div class="bg-white shadow-2xl rounded-3xl overflow-hidden">
             <div class="p-4">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="submit" method="post" enctype="multipart/form-data" id="#loginForm">
                     <div class="mb-4">
                         <label for="image" class="block text-gray-700 font-semibold mb-2">Upload Your Photo</label>
                         <input type="file" id="image" name="image" accept="image/*" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
                     </div>
                     <div class="mb-4">
-                        <label for="location" class="block text-gray-700 font-semibold mb-2">Which pet do you want? (Dog, cat, etc)</label>
+                        <label for="location" class="block text-gray-700 font-semibold mb-2">Location</label>
                         <input type="text" id="location" name="location" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
                     </div>
+                    <!-- <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" min="1" max="10" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
+                    </div> -->
                     <div class="mb-4">
-                        <label for="pets" class="block text-gray-700 font-semibold mb-2">Your Name</label>
-                        <input type="text" id="pets" name="pets" min="1" max="10" class="p-1 bg-gray-100 border border-gray-400 rounded-md shadow-sm w-full">
-                    </div>
-                    <div class="mb-4">
-                        <label for="pets" class="block text-gray-700 font-semibold mb-2">Descibe yourself</label>
-                        <textarea class="bg-gray-100 border border-gray-400 rounded-md shadow-sm h-20 w-full" name="description" id="desciption"></textarea>
+                        <label for="desc" class="block text-gray-700 font-semibold mb-2">Descibe yourself</label>
+                        <textarea class="bg-gray-100 border border-gray-400 rounded-md shadow-sm h-20 w-full" name="description" id="description"></textarea>
                     </div>
                     <div class="mb-4">
                         <label for="location" class="block text-gray-700 font-semibold mb-2">How many pets do you have?</label>
@@ -93,5 +93,40 @@
         </div>
     </div>
 </body>
+
+<script>
+document
+        .querySelector("#loginForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Get email and password values
+        //   const email = document.querySelector("#email").value;
+          const name = localStorage.getItem('name');
+          const loc = document.querySelector("#location").value;
+          const pets = document.querySelector("#pets").value;
+            const user = localStorage.getItem('id');
+          const desc = document.querySelector("#description").value;
+
+          axios
+            .post("http://localhost:4000/api/userAdopt/createProfile", {
+              name,
+              desc,
+              loc,
+                user
+            })
+            .then((res)=>{
+            // document.querySelector(".div").innerHTML=res.user.email 
+            console.log(res);
+            // window.location = "hinge.html"
+        })
+            .catch((err) => console.log(err));
+
+          // Clear the form fields
+          document.querySelector("#email").value = "";
+          document.querySelector("#password").value = "";
+        });
+
+</script>
 
 </html>
