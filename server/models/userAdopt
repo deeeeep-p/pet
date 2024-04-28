@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 const UserAdoptSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name"] },
   description: { type: String, default: null },
-  location: { type: String, required: [true, "Please provide age"] },
+  location: { type: String, required: [true, "Please provide location"] },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
   },
+  numberOfPets: { type: Number, default: 1 },
   image: { type: String, default: null }, // File path or URL to access the uploaded image
 });
 
