@@ -3,54 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Pet Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
   </head>
   <body>
-    <div class="wha"></div>
-  </body>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-      } else {
-        document.querySelector(".wha").innerHTML =
-          "Geolocation is not supported by this browser.";
-        console.log("Geolocation is not supported by this browser.");
-      }
-    }
+    <div class="container">
+      <h1>This pet belongs to Ramesh who lives in Bombay</h1>
+      <h2>Contact: 9152743762</h2>
+      <button id="getButton">Press to Submit Your Location</button>
+    </div>
 
-    function showPosition(position) {
-      console.log(
-        "Latitude: " +
-          position.coords.latitude +
-          ", Longitude: " +
-          position.coords.longitude
-      );
-      document.querySelector(".wha").insertAdjacentHTML(
-        "afterend",
-        `<a href="https://www.google.com/maps/@${position.coords.latitude},${position.coords.longitude},11z?entry=ttu">
-        what
-     </a>`
-      );
-    }
-    function showError(error) {
-      switch (error.code) {
-        case error.PERMISSION_DENIED:
-          console.log("User denied the request for Geolocation.");
-          break;
-        case error.POSITION_UNAVAILABLE:
-          console.log("Location information is unavailable.");
-          break;
-        case error.TIMEOUT:
-          console.log("The request to get user location timed out.");
-          break;
-        case error.UNKNOWN_ERROR:
-          console.log("An unknown error occurred.");
-          break;
-      }
-    }
-    getLocation();
-    axios.post();
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      document.getElementById("getButton").addEventListener("click", () => {
+        alert("Your location has been submitted");
+        axios
+          .get("http://localhost:4000/api/sendmail")
+          .then((res) => {
+            console.log("Data received:", res.data);
+          })
+          .catch((err) => {
+            console.error("Error:", err);
+          });
+      });
+    </script>
+  </body>
 </html>
