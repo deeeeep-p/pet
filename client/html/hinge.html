@@ -64,23 +64,18 @@
       </div>
     </div>
     
-        <div class="p-6">
+        <div class="p-6 mt-20 ">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
             <img src="https://tse1.mm.bing.net/th?id=OIP.yv7ia1W8rJfr_PMQwp_qxAHaFj&pid=Api&P=0&h=180" alt="Snowy"
                 class="w-full h-64 object-cover">
             <div class="p-6">
                 <h1 class="text-2xl font-bold">Snowy</h1>
+                <p class="mt-2 text-lg font-bold">Age: 3 years old</p>
                     <p class="mt-2 text-lg font-bold">Type: Cat</p>
                     <p class="mt-2 text-lg font-bold">Breed: Persian</p>
-                        <h3 class="text-lg font-bold mb-2">Vaccination Record</h3>
-                        <ul class="px-4 mb-2 text-base leading-snug">
-                            <li>Vaccine 1 - Date</li>
-                            <li>Vaccine 2 - Date</li>
-                            <li>Vaccine 3 - Date</li>
-                        </ul>
                 <div class="flex justify-between items-center border-t-2 border-gray-700 pt-4">
                     <div class="flex">
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-weight">
@@ -98,39 +93,38 @@
         </div>
     </div>
     
-    <div class="p-6 mt-[-6]">
+    <div class="p-6 mb-20">
         <div class="p-6 bg-white rounded-lg shadow-lg overflow-hidden">
             <h2 class="text-xl font-bold mt-1 mb-2">Medical History</h2>
             <div>
-                <p class="text-gray-700">Vaccination Date: <span class="text-gray-600">2024-04-20</span></p>
-                <p class="text-gray-700">Last Vet Visit: <span class="text-gray-600">2024-03-15</span></p>
+                <p class="text-gray-700 text-medium">Vaccination Date: <span class="text-gray-600">2024-04-20</span></p>
+                <p class="text-gray-700 text-medium">Last Vet Visit: <span class="text-gray-600">2024-03-15</span></p>
             </div>
-            <h2 class="text-xl font-bold mt-1 mb-2">Vaccination Record</h2>
-            <ul class="list-disc text-lg leading-snug mb-4 pl-6">
-                <li>Vaccine 1 - Date</li>
-                <li>Vaccine 2 - Date</li>
-                <li>Vaccine 3 - Date</li>
-            </ul>
-            <h2 class="text-xl font-bold mt-1 mb-2">Behavioral Notes</h2>
-            <p class="text-lg leading-snug mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                feugiat felis in lorem vulputate, vel efficitur nunc varius. Donec hendrerit eros nec urna aliquam, id
-                dictum velit efficitur.</p>
+            <h2 class="text-xl font-bold mt-2 mb-2">Behavioral Notes</h2>
+            <p class="text-lg leading-snug mb-4">Successfully mastered the "sit" and "stay" commands, responding well during training sessions.
+                Working on leash manners, tendency to pull when excited.</p>
         </div>
         
 
     </div>
 
-    <svg class="bg-white rounded-full fixed bottom-20 left-0.5 m-4 w-16 h-16 p-4 text-red-500" xmlns="http://www.w3.org/2000/svg"
-            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M6 18L18 6M6 6l12 12" />
-        </svg>
+    <svg id="heart-svg" class="bg-white rounded-full fixed bottom-20 left-0.5 m-4 w-16 h-16 p-4 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path id="heart-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+    
+    
 
         <svg class="bg-white rounded-full fixed bottom-20 right-0.5 m-4 w-16 h-16 p-4 text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(8, 8, 8, 0.86);transform: ;msFilter:;"><path d="M12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412l7.332 7.332c.17.299.498.492.875.492a.99.99 0 0 0 .792-.409l7.415-7.415c2.354-2.354 2.354-6.049-.002-8.416a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595zm6.791 1.61c1.563 1.571 1.564 4.025.002 5.588L12 18.586l-6.793-6.793c-1.562-1.563-1.561-4.017-.002-5.584.76-.756 1.754-1.172 2.799-1.172s2.035.416 2.789 1.17l.5.5a.999.999 0 0 0 1.414 0l.5-.5c1.512-1.509 4.074-1.505 5.584-.002z"></path></svg>
 
 
 
-
+        <script>
+            document.getElementById('heart-svg').addEventListener('click', function() {
+                document.getElementById('heart-path').setAttribute('fill', 'red');
+                console.
+            });
+        </script>
+        
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 
