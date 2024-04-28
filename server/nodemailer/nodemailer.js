@@ -1,24 +1,28 @@
 const nodemailer = require("nodemailer");
 
-async function sendEmail() {
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
+const sendMail = async () => {
+  let testAccount = await nodemailer.createTestAccount();
+
+  // connect with the smtp
+  let transporter = await nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
     auth: {
-      user: "adoptpleasedontshop@gmail.com",
-      pass: "Deeppatel@1D",
+      user: "yvette26@ethereal.email",
+      pass: "QJtBYSm2xPAFJ9NWv5",
     },
   });
 
-  let mailOptions = {
-    from: "adoptpleasedontshop@gmail.com",
-    to: "deep.patel22@spit.ac.imn",
-    subject: "Test Email",
-    text: "Hello, this is a test email from Nodemailer!",
-  };
-
-  let info = await transporter.sendMail(mailOptions);
+  let info = await transporter.sendMail({
+    from: '"Vinod Thapa 👻" <thapa@gmail.com>', // sender address
+    to: "iam@gmail.com", // list of receivers
+    subject: "Hello Thapa", // Subject line
+    text: "Hello YT Thapa", // plain text body
+  });
 
   console.log("Message sent: %s", info.messageId);
-}
+  // res.json(info);
+};
+sendMail();
 
-sendEmail().catch(console.error);
+// module.exports = sendMail;
