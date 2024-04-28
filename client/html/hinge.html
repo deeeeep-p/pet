@@ -18,6 +18,12 @@
         #heartIcon:active{
             transform: scale(1.5);
         }
+        #crossIcon {
+            transition: color 1s ease, transform 2s ease; /* Add transform for smooth SVG transition */
+        }
+        #crossIcon:active{
+            transform: scale(1.5);
+        }
         
         #name,
         #img,
@@ -112,7 +118,7 @@
 
     </div>
 
-    <svg class="bg-white rounded-full fixed bottom-20 left-0.5 m-4 w-16 h-16 p-4 text-red-500" xmlns="http://www.w3.org/2000/svg"
+    <svg id="crossIcon" class="bg-white rounded-full fixed bottom-20 left-0.5 m-4 w-16 h-16 p-4 text-red-500" xmlns="http://www.w3.org/2000/svg"
             fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M6 18L18 6M6 6l12 12" />
@@ -152,7 +158,13 @@
               // Randomly select a JSON object from the array
               var randomIndex = Math.floor(Math.random() * jsonData.length);
               var data = jsonData[randomIndex];
-            
+              
+              if (document.getElementById("heartIcon").style.color=="gray"){
+                document.getElementById("heartIcon").style.color="red";
+              }
+              else{
+                document.getElementById("heartIcon").style.color="gray";
+              }
               // Update innerHTML of elements based on JSON data
               document.getElementById("name").innerHTML = data.name;
               document.getElementById("img").src=data.img
@@ -162,13 +174,47 @@
               document.getElementById("weight").innerHTML = data.weight;
               document.getElementById("medHistory").innerHTML = data.medHistory;
               document.getElementById("notes").innerHTML = data.notes;
-              if (document.getElementById("heartIcon").style.color=="gray"){
-                document.getElementById("heartIcon").style.color="red";
-              }
-              else{
-                document.getElementById("heartIcon").style.color="gray";
-              }
             });
+
+            document.getElementById("crossIcon").addEventListener("click", function() {
+                // Sample JSON data (replace this with your actual JSON data)
+                jsonData = [
+                  {
+                    "name": "Fluffy",
+                    "img":"https://sp.yimg.com/ib/th?&id=ODL.1bf7a1f9f135b9445d05fa136d2a999a&w=200&h=107&c=4&dpr=2&rs=1",
+                    "age": 3,
+                    "type": "Dog",
+                    "breed": "Golden Retriever",
+                    "weight": "25 kg",
+                    "medHistory": "Vaccinated, no major issues",
+                    "notes": "Very friendly and playful"
+                  },
+                  {
+                    "name": "Whiskers",
+                    "img":"https://sp.yimg.com/ib/th?&id=ODL.302e5a9e3d9436d138276a08cfb435fa&w=200&h=107&c=4&dpr=2&rs=1",
+                    "age": 2,
+                    "type": "Cat",
+                    "breed": "Siamese",
+                    "weight": "5 kg",
+                    "medHistory": "Healthy",
+                    "notes": "Loves to cuddle"
+                  }
+                ];
+              
+                // Randomly select a JSON object from the array
+                randomIndex = Math.floor(Math.random() * jsonData.length);
+                data = jsonData[randomIndex];
+              
+                // Update innerHTML of elements based on JSON data
+                document.getElementById("name").innerHTML = data.name;
+                document.getElementById("img").src=data.img
+                document.getElementById("age").innerHTML = data.age;
+                document.getElementById("type").innerHTML = data.type;
+                document.getElementById("breed").innerHTML = data.breed;
+                document.getElementById("weight").innerHTML = data.weight;
+                document.getElementById("medHistory").innerHTML = data.medHistory;
+                document.getElementById("notes").innerHTML = data.notes;
+              });
             </script>
             
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
