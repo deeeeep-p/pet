@@ -16,12 +16,14 @@ const pet = require("./routes/pet");
 const petAdopt = require("./routes/petAdopt");
 const userAdopt = require("./routes/userAdopt");
 const nodemailer = require("./routes/nodemailer");
+const setMeeting = require("./routes/setMeeting");
 app.use("/api/forum", forum);
 app.use("/api/login", login);
 app.use("/api/pet", pet);
 app.use("/api/petAdopt", petAdopt);
 app.use("/api/userAdopt", userAdopt);
 app.use("/api/nodemailer", nodemailer);
+app.use("/api/setMeeting", setMeeting);
 const start = async () => {
   try {
     await connectDB(url);

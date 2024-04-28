@@ -12,13 +12,11 @@ const sendMail = async (req, res) => {
       pass: "QJtBYSm2xPAFJ9NWv5",
     },
   });
-  const lat = "19.1258452";
-  const long = "72.8166552";
   let info = await transporter.sendMail({
     from: '"Vinod Thapa " <thapa@gmail.com>', // sender address
-    to: "iam@gmail.com", // list of receivers
-    subject: "location of the pet", // Subject line
-    text: `your cat was found in this location at last: https://www.google.com/maps/@${lat},${long}11z?entry=ttu`, // plain text body
+    to: "Vineet@fortis.com", // list of receivers
+    subject: "Reminder about the Apponitment ", // Subject line
+    text: `Your appointmenr has been setup for 22-04-24, at 5pm est`, // plain text body
   });
 
   console.log("Message sent: %s", info.messageId);

@@ -82,7 +82,9 @@ const getIMG = async (req, res) => {
 
 const createPet = async (req, res) => {
   try {
+    console.log("inputxx");
     const newPet = await Pet.create(req.body);
+    await newPet.save();
     res.status(201).json(newPet);
   } catch (err) {
     console.error(err);
