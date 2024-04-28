@@ -38,4 +38,16 @@ const like = async (req, res) => {
   }
 };
 
-module.exports = { createPetAdopt, like };
+const displayAll = async (req, res) => {
+  try {
+    const petAdopt = await PetAdopt.find();
+    return res.status(200).json({ petAdopt });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ err: err.message || "Internal Server Error" });
+  }
+};
+
+module.exports = { createPetAdopt, like, displayAll };
