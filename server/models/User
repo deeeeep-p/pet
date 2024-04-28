@@ -4,5 +4,6 @@ const UserSchema = new mongoose.Schema({
   email: { type: String, required: [true, "Please provide Email"] },
   password: { type: String, required: true },
   contact: { type: Number, required: [true, "Please provide Contact"] },
+  image: { type: String, default: null },
 }); //schema for collection
-module.exports = mongoose.model("User", UserSchema); 
+module.exports = mongoose.model("User", UserSchema);

@@ -1,7 +1,7 @@
-const multer = require("multer");
-const fs = require("fs");
 const Pet = require("../models/Pet");
 
+const multer = require("multer");
+const fs = require("fs");
 // Multer storage configuration
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -14,8 +14,6 @@ const multerStorage = multer.diskStorage({
     cb(null, `file-${Date.now()}.${ext}`);
   },
 });
-
-module.exports = multerStorage;
 
 const upload = multer({ storage: multerStorage });
 
