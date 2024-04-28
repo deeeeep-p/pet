@@ -56,6 +56,10 @@ document
           const email = document.querySelector("#email").value;
           const password = document.querySelector("#password").value;
 
+          console.log(email);
+          console.log(password);
+
+
           axios
             .post("http://localhost:4000/api/login/get", {
               email,
@@ -68,7 +72,7 @@ document
             localStorage.setItem("name", res.data.user.name);
             localStorage.setItem("id", res.data.user._id);
             localStorage.setItem("contact", res.data.user.contact);
-            window.location = "userdash.html"
+            window.location = "index.html"
         })
             .catch((err) => console.log(err));
 

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const UserAdoptSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please provide name"] },
-  description: { type: String, default: null },
-  location: { type: String, required: [true, "Please provide location"] },
+  desc: { type: String, default: null },
+  loca: { type: String, required: [true, "Please provide location"] },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
