@@ -7,6 +7,20 @@
     <title>Pet Owner Information</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
+        @keyframes fadeAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          
+          .fadeIn {
+            animation-name: fadeAnimation;
+            animation-duration: 3s;
+            opacity: 0; /* Initially hide the element */
+          }
         .foc:active {
             transform: scale(1.5);
         }
@@ -74,6 +88,22 @@
         document.getElementById("sendLocationBtn").addEventListener("click", function () {
             alert("Location has been sent!");
         });
+
+        
+        window.addEventListener('scroll', function() {
+            let slideUpElements = document.querySelectorAll('.fadeIn');
+      
+            slideUpElements.forEach((element) => {
+              let position = element.getBoundingClientRect().top;
+              let screenHeight = window.innerHeight;
+      
+              // If the element is in the viewport
+              if (position < screenHeight) {
+                element.classList.add('fadeIn');
+              }
+            });
+          });
+           
     </script>
 </body>
 

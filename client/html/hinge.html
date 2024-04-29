@@ -11,7 +11,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <style>
+
+    <style> 
+        @keyframes fadeAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          
+          .fadeIn {
+            animation-name: fadeAnimation;
+            animation-duration: 3s;
+            opacity: 0; /* Initially hide the element */
+          }
         #heartIcon {
             transition: color 1s ease, transform 2s ease; /* Add transform for smooth SVG transition */
         }
@@ -216,7 +231,21 @@
                 document.getElementById("notes").innerHTML = data.notes;
               });
             </script>
+           
+                window.addEventListener('scroll', function() {
+                  let slideUpElements = document.querySelectorAll('.fadeIn');
             
+                  slideUpElements.forEach((element) => {
+                    let position = element.getBoundingClientRect().top;
+                    let screenHeight = window.innerHeight;
+            
+                    // If the element is in the viewport
+                    if (position < screenHeight) {
+                      element.classList.add('fadeIn');
+                    }
+                  });
+                });
+                 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 

@@ -11,7 +11,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <script>
+    <style>
+        @keyframes fadeAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          
+          .fadeIn {
+            animation-name: fadeAnimation;
+            animation-duration: 3s;
+            opacity: 0; /* Initially hide the element */
+          }
+    </style>
+        <script>
         tailwind.config = {
             theme: {
                 fontFamily: {
@@ -66,7 +82,21 @@
             </div>
         </div>
     </div>
-
+    <script>
+        window.addEventListener('scroll', function() {
+          let slideUpElements = document.querySelectorAll('.fadeIn');
+    
+          slideUpElements.forEach((element) => {
+            let position = element.getBoundingClientRect().top;
+            let screenHeight = window.innerHeight;
+    
+            // If the element is in the viewport
+            if (position < screenHeight) {
+              element.classList.add('fadeIn');
+            }
+          });
+        });
+      </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 

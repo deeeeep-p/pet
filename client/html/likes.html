@@ -12,6 +12,20 @@
         body {
             font-family: 'Lato', sans-serif;
         }
+        @keyframes fadeAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          
+          .fadeIn {
+            animation-name: fadeAnimation;
+            animation-duration: 3s;
+            opacity: 0; /* Initially hide the element */
+          }
     </style>
 </head>
 
@@ -80,6 +94,23 @@
             <!-- Add more pet cards here -->
         </div>
     </div>
+    <script>
+    window.addEventListener('scroll', function() {
+        let slideUpElements = document.querySelectorAll('.fadeIn');
+  
+        slideUpElements.forEach((element) => {
+          let position = element.getBoundingClientRect().top;
+          let screenHeight = window.innerHeight;
+  
+          // If the element is in the viewport
+          if (position < screenHeight) {
+            element.classList.add('fadeIn');
+          }
+        });
+      });
+       
+</script>
+    
 </body>
 
 </html>

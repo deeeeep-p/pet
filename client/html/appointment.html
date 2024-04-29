@@ -17,7 +17,7 @@
           transform: translate(-50%, -50%);
         }
         .background {
-          background-image: url("https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0fGVufDB8fDB8fHww");
+          background-image: url("https://images.unsplash.com/photo-1612940960267-4549a58fb257?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
           background-size: cover;
           background-repeat: no-repeat;
           height: 100vh;
@@ -26,6 +26,20 @@
         .uuu{
             transform: translateX(-5%);
         }
+        @keyframes fadeAnimation {
+            0% {
+              opacity: 0;
+            }
+            100% {
+              opacity: 1;
+            }
+          }
+          
+          .fadeIn {
+            animation-name: fadeAnimation;
+            animation-duration: 3s;
+            opacity: 0; /* Initially hide the element */
+          }
       </style>
   </head>
 
@@ -85,6 +99,21 @@
             </div>
         </div>
     </div>
+    <script>
+        window.addEventListener('scroll', function() {
+          let slideUpElements = document.querySelectorAll('.fadeIn');
+    
+          slideUpElements.forEach((element) => {
+            let position = element.getBoundingClientRect().top;
+            let screenHeight = window.innerHeight;
+    
+            // If the element is in the viewport
+            if (position < screenHeight) {
+              element.classList.add('fadeIn');
+            }
+          });
+        });
+      </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
