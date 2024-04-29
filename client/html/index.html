@@ -279,16 +279,18 @@
         }
       });
     });
-    console.log(localStorage.getItem('name'))
     const div = document.querySelector('#header-wrap');
     const head = document.createElement('h1');
     head.classList.add("text-white");
     head.classList.add("text-2xl");
+    head.classList.add("p-2");
     head.classList.add("font-bold");
 
 
     div.appendChild(head);
-    head.innerHTML = `Hi, ${localStorage.getItem('name')}!`;
+    //head.innerHTML = `Hello, ${localStorage.getItem('name')}!`;
+    head.innerHTML='Hello, User!'
+    
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
