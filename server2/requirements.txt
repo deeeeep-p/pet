@@ -1,4 +1,0 @@
-Flask==3.0.3
-flask_session==0.8.0
-pymongo==4.7.0
-Requests==2.31.0
