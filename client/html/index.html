@@ -9,6 +9,16 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
   <title>PetBud</title>
   <style>
+
+    @keyframes fadeAnimation {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
     .fadeIn {
       animation-name: fadeAnimation;
       animation-duration: 3s;
@@ -48,14 +58,7 @@
       opacity: 0.9;
     }
 
-    @keyframes fadeAnimation {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
+    
 
     /* Apply the fade animation to the body */
     body {
@@ -264,7 +267,7 @@
 
   <script>
     window.addEventListener('scroll', function() {
-      let slideUpElements = document.querySelectorAll('.slide-up');
+      let slideUpElements = document.querySelectorAll('.fadeIn');
 
       slideUpElements.forEach((element) => {
         let position = element.getBoundingClientRect().top;
@@ -272,20 +275,22 @@
 
         // If the element is in the viewport
         if (position < screenHeight) {
-          element.classList.add('slide-up-active');
+          element.classList.add('fadeIn');
         }
       });
     });
-    console.log(localStorage.getItem('name'))
     const div = document.querySelector('#header-wrap');
     const head = document.createElement('h1');
     head.classList.add("text-white");
     head.classList.add("text-2xl");
+    head.classList.add("p-2");
     head.classList.add("font-bold");
 
 
     div.appendChild(head);
-    head.innerHTML = `Hi, ${localStorage.getItem('name')}!`;
+    //head.innerHTML = `Hello, ${localStorage.getItem('name')}!`;
+    head.innerHTML='Hello, User!'
+    
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>

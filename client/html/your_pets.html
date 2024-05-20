@@ -18,7 +18,21 @@
         font-family: "Lato", sans-serif;
       }
 
-      :nth-of-type(1) 
+      @keyframes fadeAnimation {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      .fadeIn {
+        animation-name: fadeAnimation;
+        animation-duration: 3s;
+        opacity: 0; /* Initially hide the element */
+      }
+
     </style>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
@@ -288,6 +302,22 @@
         .catch((error) => {
           console.error("Error:", error); // Log any errors
         });
+
+        
+        window.addEventListener('scroll', function() {
+          let slideUpElements = document.querySelectorAll('.fadeIn');
+    
+          slideUpElements.forEach((element) => {
+            let position = element.getBoundingClientRect().top;
+            let screenHeight = window.innerHeight;
+    
+            // If the element is in the viewport
+            if (position < screenHeight) {
+              element.classList.add('fadeIn');
+            }
+          });
+        });
+         
     </script>
   </body>
 </html>

@@ -14,7 +14,7 @@
             transform: translate(-50%, -50%);
         }
         .background{
-            background-image: url("https://images.unsplash.com/photo-1415369629372-26f2fe60c467?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGV0fGVufDB8fDB8fHww");
+            background-image: url("http://getwallpapers.com/wallpaper/full/8/8/5/884299-gorgerous-cute-kitten-wallpaper-2880x1800-for-4k-monitor.jpg");
             background-size:cover;
             background-repeat: no-repeat;
             height: 100vh;
@@ -34,10 +34,13 @@
                 <label class="my-1" for="email">Email</label>
                 <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="email"
                     id="email" name="email" placeholder="email">
+                    <label class="my-1" for="email">Your Name</label>
+                <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="text"
+                    id="name" name="name" placeholder="email">
                 <label class="my-1" for="password">Password</label>
                 <input class="text-black rounded-lg bg-slate-100 mb-4 pl-2 py-[1px] border-[1px] border-slate-500" type="password"
                     name="password" id="password" placeholder="Enter password">
-                <button type="submit" class="bg-gray-900 text-white p-1 rounded-xl mt-3 hover:opacity-80">Login</button>
+                <a href="index.html" class="bg-gray-900 text-white p-1 text-center rounded-xl mt-3 hover:opacity-80">Login</a>
                 <p class="pt-2" id="#reg">Not registered yet? <a class="underline"
                         href="register.html">Register now!</a></p>
             </form>
@@ -63,13 +66,14 @@ document
           axios
             .post("http://localhost:4000/api/login/get", {
               email,
+              name,
               password,
             })
             .then((res)=>{
             // document.querySelector(".div").innerHTML=res.user.email 
             console.log(res);
             localStorage.setItem("email", email);
-            localStorage.setItem("name", res.data.user.name);
+            localStorage.setItem("name", name);
             localStorage.setItem("id", res.data.user._id);
             localStorage.setItem("contact", res.data.user.contact);
             window.location = "index.html"
