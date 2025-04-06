@@ -1,14 +1,32 @@
 # PetSmart
 
-PetSmart is a comprehensive solution designed to address all aspects of pet ownership. This project offers a range of features including effective adoption management, custom QR code generation for each pet's information, and a convenient pet store locator.
+PetSmart is a comprehensive web application aiming to be the central hub for all pet owner needs. This project offers a range of features including effective adoption management, custom QR code generation for each pet's information, and a convenient pet store locator.
+
+A standout feature is its engaging, dating app-like interface designed to showcase foster animals and encourage adoption through an appealing and interactive experience. Additionally, the application integrates the Mapbox API, providing users with a convenient way to locate nearby pet shops, veterinary clinics, and other essential pet-related services. PetSmart focuses on delivering a seamless and user-friendly experience for managing and caring for pets.
 
 ## Installation
 
-Navigate to 'Server' Use the package manager [npm](https://www.npmjs.com/) to initialize PetBuddy.
+Clone the repository using the following link:
+
+```bash
+https://github.com/deeeeep-p/pet
+```
+
+
+Navigate to 'Server':
+
+```bash
+cd server
+```
+
+
+ Use the package manager [npm](https://www.npmjs.com/) to install the required dependencies:
 
 ```bash
 npm i
 ```
+
+Great! You're good to go!
 
 
 
